@@ -10,9 +10,9 @@ ADS1115_REG_CONFIG_PGA_1_024V        = 0x06 # 1.024V range = Gain 4
 ADS1115_REG_CONFIG_PGA_0_512V        = 0x08 # 0.512V range = Gain 8
 ADS1115_REG_CONFIG_PGA_0_256V        = 0x0A # 0.256V range = Gain 16
 
-from DFRobot_ADS1115 	import ADS1115
-from GreenPonik_PH      import GreenPonik_PH
-from GreenPonik_EC      import GreenPonik_EC
+from libs.DFRobot_ADS1115 import ADS1115
+from libs.GreenPonik_PH import GreenPonik_PH
+from src.GreenPonik_EC import GreenPonik_EC
 
 ads1115 = ADS1115()
 ec      = GreenPonik_EC()
