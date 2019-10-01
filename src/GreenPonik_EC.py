@@ -36,7 +36,7 @@ class GreenPonik_EC():
 				kvalueHighLine = kvalueHighLine.strip('kvalueHigh=')
 				_kvalueHigh    = float(kvalueHighLine)
 		except :
-			reset()
+			self.reset()
 			sys.exit(1)
 
 	def readEC(self,voltage,temperature):
