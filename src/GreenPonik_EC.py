@@ -44,7 +44,7 @@ class GreenPonik_EC():
 		global _kvalueHigh
 		global _kvalue
 		rawEC = 1000*voltage/820.0/200.0
-		print("rawEC is: %.2f" % rawEC)
+		print(">>>current rawEC is: %.3f" % rawEC)
 		valueTemp = rawEC * _kvalue
 		if(valueTemp > 2.5):
 			_kvalue = _kvalueHigh
@@ -59,7 +59,7 @@ class GreenPonik_EC():
 
 	def calibration(self,voltage,temperature):
 		rawEC = 1000*voltage/820.0/200.0
-		print("rawEC is: %.2f" % rawEC)
+		print(">>>current rawEC is: %.3f" % rawEC)
 		if (rawEC>0.8 and rawEC<2.1):#automated 1.413 buffer solution dection
 			compECsolution = 1.413*(1.0+0.0185*(temperature-25.0))
 			KValueTemp = self.KvalueTempCalculation(compECsolution,voltage)
@@ -74,7 +74,9 @@ class GreenPonik_EC():
 			status_msg = ">>>EC:1.413us/cm Calibration completed,Please enter Ctrl+C exit calibration in 5 seconds"
 			print(status_msg)
 			time.sleep(5.0)
-			cal_res = {'status': 1413,'status_message': status_msg}
+			cal_res = {'status': 1413,
+                       'kvalue': KValueTemp,
+                       'status_message': status_msg}
 			return cal_res
 		elif (rawEC>2 and rawEC<3.5):#automated 2.76 buffer solution dection
 			compECsolution = 2.76*(1.0+0.0185*(temperature-25.0))
@@ -90,7 +92,9 @@ class GreenPonik_EC():
 			status_msg = ">>>EC:2.76ms/cm Calibration completed,Please enter Ctrl+C exit calibration in 5 seconds"
 			print(status_msg)
 			time.sleep(5.0)
-			cal_res = {'status': 276,'status_message': status_msg}
+			cal_res = {'status': 276,
+                       'kvalue': KValueTemp,
+                       'status_message': status_msg}
 			return cal_res
 		elif (rawEC>9 and rawEC<16.8):#automated 12.88 buffer solution dection
 			compECsolution = 12.88*(1.0+0.0185*(temperature-25.0))
@@ -105,10 +109,12 @@ class GreenPonik_EC():
 			status_msg = ">>>EC:12.88ms/cm Calibration completed,Please enter Ctrl+C exit calibration in 5 seconds"
 			print(status_msg)
 			time.sleep(5.0)
-			cal_res = {'status': 1288,'status_message': status_msg}
+			cal_res = {'status': 1288,
+                       'kvalue': KValueTemp,
+                       'status_message': status_msg}
 			return cal_res
 		else:
-			status_msg = ">>>Buffer Solution Error Try Again<<<"
+			status_msg = ">>>Buffer Solution Error, EC raw: %.3f, Try Again<<<" % rawEC
 			print(status_msg)
 			cal_res = {'status': 9999,'status_message': status_msg}
 			return cal_res

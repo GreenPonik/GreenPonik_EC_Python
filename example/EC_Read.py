@@ -1,6 +1,7 @@
+import time
 import sys
-sys.path.insert(0,'DFRobot_ADS1115/RaspberryPi/Python/')
-sys.path.insert(0,'GreenPonik_EC_Python/src/')
+sys.path.insert(0,'../libs/DFRobot_ADS1115/RaspberryPi/Python/')
+sys.path.insert(0,'../src/')
 
 
 from GreenPonik_EC import GreenPonik_EC
@@ -33,5 +34,7 @@ def read_ec():
     return EC
 
 
-while True:
-	read_ec()
+if __name__ == "__main__":
+    while True:
+        read_ec()
+        time.sleep(1)

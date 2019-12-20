@@ -1,6 +1,7 @@
+import time
 import sys
-sys.path.insert(0,'libs/DFRobot_ADS1115/RaspberryPi/Python/')
-sys.path.insert(0,'libs/GreenPonik_EC_Python/src/')
+sys.path.insert(0,'../libs/DFRobot_ADS1115/RaspberryPi/Python/')
+sys.path.insert(0,'../src/')
 
 from DFRobot_ADS1115 import ADS1115
 from GreenPonik_EC import GreenPonik_EC
@@ -30,4 +31,7 @@ def calibration():
     return ec.calibration(adc0['r'], temperature)
 
 
-calibration()
+if __name__ == "__main__":
+    while True:
+        calibration()
+        time.sleep(1)
