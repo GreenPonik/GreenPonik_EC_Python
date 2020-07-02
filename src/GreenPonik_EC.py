@@ -63,7 +63,7 @@ class GreenPonik_EC():
         if (rawEC > 0.8 and rawEC < 2.1):  # automated 1.413 buffer solution dection
             compECsolution = 1.413*(1.0+0.0185*(temperature-25.0))
             KValueTemp = self.KvalueTempCalculation(compECsolution, voltage)
-            round(KValueTemp, 2)
+            KValueTemp = round(KValueTemp, 2)
             print(">>>Buffer Solution:1.413us/cm")
             f = open('ecdata.txt', 'r+')
             flist = f.readlines()
@@ -81,7 +81,7 @@ class GreenPonik_EC():
         elif (rawEC > 2 and rawEC < 3.5):  # automated 2.76 buffer solution dection
             compECsolution = 2.76*(1.0+0.0185*(temperature-25.0))
             KValueTemp = self.KvalueTempCalculation(compECsolution, voltage)
-            round(KValueTemp, 2)
+            KValueTemp = round(KValueTemp, 2)
             print(">>>Buffer Solution:2.76ms/cm")
             f = open('ecdata.txt', 'r+')
             flist = f.readlines()
